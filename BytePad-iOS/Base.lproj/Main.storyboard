@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Search View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="BytePad_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="SearchViewController" customModule="BytePad_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -20,13 +20,38 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="35" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GHO-9Z-QnR">
+                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="search-cell" rowHeight="35" id="0Ke-Ph-vly">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="35"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0Ke-Ph-vly" id="QhQ-Rj-SgP">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="34"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="GHO-9Z-QnR" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="O1j-nq-Vcv"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="GHO-9Z-QnR" secondAttribute="bottom" id="Z8e-IH-5Ow"/>
+                            <constraint firstItem="GHO-9Z-QnR" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="chi-Ch-Crn"/>
+                            <constraint firstAttribute="trailing" secondItem="GHO-9Z-QnR" secondAttribute="trailing" id="q0M-Kl-qOO"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Lfz-Qm-eD1"/>
+                    <connections>
+                        <outlet property="searchTableView" destination="GHO-9Z-QnR" id="IUi-rK-yoE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2276" y="793"/>
+            <point key="canvasLocation" x="2274.375" y="792.25352112676057"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="KQt-2z-wWG">
@@ -72,6 +97,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="fPl-lM-ckg" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="CKj-cW-2f5">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>

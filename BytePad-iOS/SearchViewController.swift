@@ -8,11 +8,15 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class SearchViewController: UIViewController {
+    
+    @IBOutlet weak var searchTableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        self.searchTableView.dataSource = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -22,4 +26,20 @@ class ViewController: UIViewController {
 
 
 }
+
+extension SearchViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 20
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = self.searchTableView.dequeueReusableCell(withIdentifier: "search-cell")
+        cell?.textLabel?.text = "Blah"
+        return cell!
+    }
+    
+    
+}
+
 
