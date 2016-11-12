@@ -15,13 +15,14 @@ class DownloadsViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        self.downloadsTableView.dataSource = self
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
         
-        self.downloadsTableView.dataSource = self
     }
     
 
@@ -44,7 +45,7 @@ extension DownloadsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.downloadsTableView.dequeueReusableCell(withIdentifier: "downloads-cell")
-        cell?.textLabel?.text = "fuck"
+        cell?.textLabel?.text = "Downloaded file"
         
         return cell!
         
