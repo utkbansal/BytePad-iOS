@@ -1,0 +1,6 @@
+.DS_Store
+BytePad-iOS.xcodeproj/xcuserdata/
+BytePad-iOS.xcworkspace/
+
+# Cocoapods
+Pods/
