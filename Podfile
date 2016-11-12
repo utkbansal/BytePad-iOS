@@ -8,6 +8,9 @@ target 'BytePad-iOS' do
   # Pods for BytePad-iOS
   pod 'Alamofire'
   pod 'SwiftyJSON'
+  pod 'Fabric'
+  pod 'Crashlytics'
+
   target 'BytePad-iOSTests' do
     inherit! :search_paths
     # Pods for testing
