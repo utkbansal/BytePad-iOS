@@ -97,11 +97,10 @@
 		4B01FB631DD7A02100F67DE8 /* BytePad-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				4B01FB931DD7AA5900F67DE8 /* Views */,
+				4B01FB921DD7AA3F00F67DE8 /* Controllers */,
 				4B01FB641DD7A02100F67DE8 /* AppDelegate.swift */,
-				4B01FB661DD7A02100F67DE8 /* ViewController.swift */,
-				4B01FB681DD7A02100F67DE8 /* Main.storyboard */,
 				4B01FB6B1DD7A02100F67DE8 /* Assets.xcassets */,
-				4B01FB6D1DD7A02100F67DE8 /* LaunchScreen.storyboard */,
 				4B01FB701DD7A02100F67DE8 /* Info.plist */,
 			);
 			path = "BytePad-iOS";
@@ -123,6 +122,23 @@
 				4B01FB861DD7A02100F67DE8 /* Info.plist */,
 			);
 			path = "BytePad-iOSUITests";
+			sourceTree = "<group>";
+		};
+		4B01FB921DD7AA3F00F67DE8 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				4B01FB661DD7A02100F67DE8 /* ViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		4B01FB931DD7AA5900F67DE8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4B01FB681DD7A02100F67DE8 /* Main.storyboard */,
+				4B01FB6D1DD7A02100F67DE8 /* LaunchScreen.storyboard */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -514,6 +530,7 @@
 				4B01FB8B1DD7A02100F67DE8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4B01FB8C1DD7A02100F67DE8 /* Build configuration list for PBXNativeTarget "BytePad-iOSTests" */ = {
 			isa = XCConfigurationList;
@@ -522,6 +539,7 @@
 				4B01FB8E1DD7A02100F67DE8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4B01FB8F1DD7A02100F67DE8 /* Build configuration list for PBXNativeTarget "BytePad-iOSUITests" */ = {
 			isa = XCConfigurationList;
@@ -530,6 +548,7 @@
 				4B01FB911DD7A02100F67DE8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
