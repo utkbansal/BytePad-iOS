@@ -18,6 +18,9 @@
 		4B01FB971DD7B7AC00F67DE8 /* DownloadsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B01FB961DD7B7AC00F67DE8 /* DownloadsViewController.swift */; };
 		4BC952D81E16A0260077041F /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC952D71E16A0260077041F /* APIManager.swift */; };
 		4BC952DA1E16A0A20077041F /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BC952D91E16A0A20077041F /* Router.swift */; };
+		4B915B5E1E16C83400FAB22E /* BytePad-iOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4B915B5C1E16C83400FAB22E /* BytePad-iOS.xcdatamodeld */; };
+		4B915B611E16CB9F00FAB22E /* Paper+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B915B5F1E16CB9F00FAB22E /* Paper+CoreDataClass.swift */; };
+		4B915B621E16CB9F00FAB22E /* Paper+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B915B601E16CB9F00FAB22E /* Paper+CoreDataProperties.swift */; };
 		782D53ACC47ABBE3C5AECBD6 /* Pods_BytePad_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCE452CA7CF2650D5AA6B768 /* Pods_BytePad_iOS.framework */; };
 		BA365A032ED85EF818F8AF5B /* Pods_BytePad_iOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FDC1EDC31136040490080E6 /* Pods_BytePad_iOSUITests.framework */; };
 /* End PBXBuildFile section */
@@ -57,6 +60,9 @@
 		4B01FB961DD7B7AC00F67DE8 /* DownloadsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadsViewController.swift; sourceTree = "<group>"; };
 		4BC952D71E16A0260077041F /* APIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		4BC952D91E16A0A20077041F /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		4B915B5D1E16C83400FAB22E /* BytePad-iOS.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "BytePad-iOS.xcdatamodel"; sourceTree = "<group>"; };
+		4B915B5F1E16CB9F00FAB22E /* Paper+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Paper+CoreDataClass.swift"; sourceTree = "<group>"; };
+		4B915B601E16CB9F00FAB22E /* Paper+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Paper+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		4EDBFE5985152309C9B2A594 /* Pods-BytePad-iOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BytePad-iOSUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BytePad-iOSUITests/Pods-BytePad-iOSUITests.release.xcconfig"; sourceTree = "<group>"; };
 		5FDC1EDC31136040490080E6 /* Pods_BytePad_iOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BytePad_iOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		70543745A141FC55E3307497 /* Pods-BytePad-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BytePad-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BytePad-iOS/Pods-BytePad-iOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -492,6 +498,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BC952D81E16A0260077041F /* APIManager.swift in Sources */,
+				4B915B611E16CB9F00FAB22E /* Paper+CoreDataClass.swift in Sources */,
 				4B01FB671DD7A02100F67DE8 /* SearchViewController.swift in Sources */,
 				4B915B5E1E16C83400FAB22E /* BytePad-iOS.xcdatamodeld in Sources */,
 				4B01FB651DD7A02100F67DE8 /* AppDelegate.swift in Sources */,
