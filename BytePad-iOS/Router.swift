@@ -13,11 +13,14 @@ enum Router: URLRequestConvertible {
     static let baseURLString = "http://testapi.silive.in/api/"
     
     case getAll()
+    case getVersion()
     
     func asURLRequest() throws -> URLRequest {
         var method: HTTPMethod {
             switch self {
             case .getAll():
+                return .get
+            case .getVersion():
                 return .get
             }
             
@@ -28,7 +31,11 @@ enum Router: URLRequestConvertible {
             switch self {
             case .getAll():
                 relativePath = "get_list_"
+            case .getVersion():
+                relativePath = "get_verison_"
             }
+            
+            
             
             var url = URL(string: Router.baseURLString)
             url?.appendPathComponent(relativePath)

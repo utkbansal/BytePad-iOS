@@ -45,6 +45,7 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
         searchController.searchBar.delegate = self
         
         APIManager.sharedInstance.getAllPapers()
+        APIManager.sharedInstance.getVersion()
         
     }
 

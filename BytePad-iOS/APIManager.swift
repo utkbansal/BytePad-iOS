@@ -20,4 +20,13 @@ class APIManager {
             }
         }
     }
+    
+    func getVersion() {
+        Alamofire.request(Router.getVersion()).responseString {
+            response in
+            if let recievedString = response.result.value {
+                print(recievedString)
+            }
+        }
+    }
 }
