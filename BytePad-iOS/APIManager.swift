@@ -9,14 +9,21 @@
 import UIKit
 import Alamofire
 
+protocol APIManagerDelegate: class {
+    func didFinishTask()
+}
+
+
 class APIManager {
     static let sharedInstance = APIManager()
+    weak var delegate: APIManagerDelegate?
     
     func getAllPapers() {
         Alamofire.request(Router.getAll()).responseString {
             response in
             if let recievedString = response.result.value {
                 print(recievedString)
+                self.delegate?.didFinishTask()
             }
         }
     }

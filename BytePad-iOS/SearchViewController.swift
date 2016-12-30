@@ -13,7 +13,10 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
     let searchController = UISearchController(searchResultsController: nil)
     
     @IBOutlet weak var searchTableView: UITableView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    
+    // MARK: Search controlls
     
     func filterContentForSearchText(searchText: String, scope: String = "All") {
         
@@ -33,7 +36,6 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
         self.searchTableView.dataSource = self
         
@@ -44,20 +46,25 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
         searchController.searchBar.scopeButtonTitles = ["All", "ST1", "ST2", "PUT", "UT"]
         searchController.searchBar.delegate = self
         
-        APIManager.sharedInstance.getAllPapers()
-        APIManager.sharedInstance.getVersion()
-        APIManager.sharedInstance.getLastUpdate()
+        let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
         
-    }
+        if !launchedBefore {
+            self.activityIndicator.startAnimating()
+            // Call get all papers endpoint and populate db
+            APIManager.sharedInstance.delegate = self
+            APIManager.sharedInstance.getAllPapers()
+        
+            UserDefaults.standard.set(true, forKey: "launchedBefore")
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+        }
+        
 
+    }
 
 }
 
+
+// MARK: Table View datasource
 extension SearchViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -69,8 +76,14 @@ extension SearchViewController: UITableViewDataSource {
         cell?.textLabel?.text = "Blah"
         return cell!
     }
-    
-    
+}
+
+extension SearchViewController: APIManagerDelegate {
+    func didFinishTask() {
+        // do stuff like updating the UI
+        print("this always happens afterwards")
+        self.activityIndicator.isHidden = true
+    }
 }
 
 
