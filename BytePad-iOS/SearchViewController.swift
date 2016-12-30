@@ -106,18 +106,15 @@ extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.searchTableView.dequeueReusableCell(withIdentifier: "search-cell")
         let paper = self.papers[indexPath.row]
-        cell?.textLabel?.text = paper.fileURL
+        cell?.textLabel?.text = paper.fileURL?.components(separatedBy: "/").last
         return cell!
     }
 }
 
 extension SearchViewController: APIManagerDelegate {
     func didFinishTask() {
-        
         self.loadData()
-        
         self.hideLoading()
-
     }
 }
 
