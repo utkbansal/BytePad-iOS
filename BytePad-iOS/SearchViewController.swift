@@ -51,6 +51,19 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
         self.searchTableView.isHidden = false
     }
     
+    func loadData() {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        
+        do {
+            self.papers = try context.fetch(Paper.createFetchRequest())
+            self.searchTableView.reloadData()
+        }
+        catch {
+            print("Fetching failed")
+        }
+        
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,7 +79,7 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
         
         let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
         
-//        if !launchedBefore {
+        if !launchedBefore {
         
             self.showLoading()
             
@@ -75,8 +88,10 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
             APIManager.sharedInstance.getAllPapers()
         
             UserDefaults.standard.set(true, forKey: "launchedBefore")
-
-//        }
+        }
+        
+        self.loadData()
+        self.hideLoading()
     }
 }
 
@@ -98,16 +113,8 @@ extension SearchViewController: UITableViewDataSource {
 
 extension SearchViewController: APIManagerDelegate {
     func didFinishTask() {
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
-        do {
-            self.papers = try context.fetch(Paper.createFetchRequest())
-            self.searchTableView.reloadData()
-        }
-        catch {
-            print("Fetching failed")
-        }
-        
+        self.loadData()
         
         self.hideLoading()
 
