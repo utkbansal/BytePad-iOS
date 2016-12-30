@@ -44,6 +44,8 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
         searchController.searchBar.scopeButtonTitles = ["All", "ST1", "ST2", "PUT", "UT"]
         searchController.searchBar.delegate = self
         
+        APIManager.sharedInstance.getAllPapers()
+        
     }
 
     override func didReceiveMemoryWarning() {
