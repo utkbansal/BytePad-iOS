@@ -19,5 +19,6 @@ extension Paper {
     @NSManaged public var examTypeID: NSNumber?
     @NSManaged public var fileURL: String?
     @NSManaged public var semester: NSNumber?
+    @NSManaged public var name: String?
 
 }

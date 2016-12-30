@@ -35,6 +35,7 @@ class APIManager {
                         paper.fileURL =  item.1.dictionaryValue["file_url"]?.stringValue
                         paper.semester = item.1.dictionaryValue["semester"]?.numberValue
                         paper.examTypeID = item.1.dictionaryValue["exam)type_id"]?.numberValue
+                        paper.name = paper.fileURL?.components(separatedBy: "/").last
                         delegate.saveContext()
                     }
                 }
