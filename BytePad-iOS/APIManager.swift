@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import SwiftyJSON
 
 protocol APIManagerDelegate: class {
     func didFinishTask()
@@ -19,10 +20,24 @@ class APIManager {
     weak var delegate: APIManagerDelegate?
     
     func getAllPapers() {
-        Alamofire.request(Router.getAll()).responseString {
+        Alamofire.request(Router.getAll()).responseJSON {
             response in
-            if let recievedString = response.result.value {
-                print(recievedString)
+            
+            if response.result.isSuccess == true {
+                let delegate = UIApplication.shared.delegate as! AppDelegate
+                let context = delegate.persistentContainer.viewContext
+                if let data = response.result.value {
+                    let json = JSON(data)
+                    for item in json {
+                        let paper = Paper(context: context)
+                        print(item)
+                        
+                        paper.fileURL =  item.1.dictionaryValue["file_url"]?.stringValue
+                        paper.semester = item.1.dictionaryValue["semester"]?.numberValue
+                        paper.examTypeID = item.1.dictionaryValue["exam)type_id"]?.numberValue
+                        delegate.saveContext()
+                    }
+                }
                 self.delegate?.didFinishTask()
             }
         }

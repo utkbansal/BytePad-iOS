@@ -2,7 +2,7 @@
 //  Paper+CoreDataProperties.swift
 //  BytePad-iOS
 //
-//  Created by Utkarsh Bansal on 30/12/16.
+//  Created by Utkarsh Bansal on 31/12/16.
 //  Copyright © 2016 Software Incubator. All rights reserved.
 //
 
@@ -16,8 +16,8 @@ extension Paper {
         return NSFetchRequest<Paper>(entityName: "Paper");
     }
 
+    @NSManaged public var examTypeID: NSNumber?
     @NSManaged public var fileURL: String?
-    @NSManaged public var examTypeID: Int16
-    @NSManaged public var semester: Int16
+    @NSManaged public var semester: NSNumber?
 
 }

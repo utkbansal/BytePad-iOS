@@ -16,6 +16,8 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var loadingTextLabel: UILabel!
     
+    var papers: [Paper] = []
+    
     
     // MARK: Search controlls
     
@@ -83,20 +85,32 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
 extension SearchViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return self.papers.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.searchTableView.dequeueReusableCell(withIdentifier: "search-cell")
-        cell?.textLabel?.text = "Blah"
+        let paper = self.papers[indexPath.row]
+        cell?.textLabel?.text = paper.fileURL
         return cell!
     }
 }
 
 extension SearchViewController: APIManagerDelegate {
     func didFinishTask() {
-        self.activityIndicator.isHidden = true
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        
+        do {
+            self.papers = try context.fetch(Paper.createFetchRequest())
+            self.searchTableView.reloadData()
+        }
+        catch {
+            print("Fetching failed")
+        }
+        
+        
         self.hideLoading()
+
     }
 }
 
