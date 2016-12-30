@@ -14,6 +14,7 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
     
     @IBOutlet weak var searchTableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var loadingTextLabel: UILabel!
     
     
     // MARK: Search controlls
@@ -34,6 +35,21 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
         self.filterContentForSearchText(searchText: searchBar.text!, scope: searchBar.scopeButtonTitles![selectedScope])
     }
 
+    func showLoading() {
+        self.activityIndicator.startAnimating()
+        self.activityIndicator.isHidden = false
+        self.loadingTextLabel.isHidden = false
+        self.searchTableView.isHidden = true
+    }
+    
+    func hideLoading() {
+        self.activityIndicator.stopAnimating()
+        self.activityIndicator.isHidden = true
+        self.loadingTextLabel.isHidden = true
+        self.searchTableView.isHidden = false
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -48,19 +64,18 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
         
         let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
         
-        if !launchedBefore {
-            self.activityIndicator.startAnimating()
+//        if !launchedBefore {
+        
+            self.showLoading()
+            
             // Call get all papers endpoint and populate db
             APIManager.sharedInstance.delegate = self
             APIManager.sharedInstance.getAllPapers()
         
             UserDefaults.standard.set(true, forKey: "launchedBefore")
 
-        }
-        
-
+//        }
     }
-
 }
 
 
@@ -80,9 +95,8 @@ extension SearchViewController: UITableViewDataSource {
 
 extension SearchViewController: APIManagerDelegate {
     func didFinishTask() {
-        // do stuff like updating the UI
-        print("this always happens afterwards")
         self.activityIndicator.isHidden = true
+        self.hideLoading()
     }
 }
 
