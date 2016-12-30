@@ -29,4 +29,14 @@ class APIManager {
             }
         }
     }
+    
+    func getLastUpdate() {
+        Alamofire.request(Router.getLastUpdate()).responseString{
+            response in
+            if let recievedString = response.result.value {
+                print(recievedString)
+            }
+        }
+        
+    }
 }

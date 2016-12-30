@@ -14,6 +14,7 @@ enum Router: URLRequestConvertible {
     
     case getAll()
     case getVersion()
+    case getLastUpdate()
     
     func asURLRequest() throws -> URLRequest {
         var method: HTTPMethod {
@@ -22,7 +23,10 @@ enum Router: URLRequestConvertible {
                 return .get
             case .getVersion():
                 return .get
+            case .getLastUpdate():
+                return .get
             }
+        
             
         }
         
@@ -33,6 +37,8 @@ enum Router: URLRequestConvertible {
                 relativePath = "get_list_"
             case .getVersion():
                 relativePath = "get_verison_"
+            case .getLastUpdate():
+                relativePath = "last_update_"
             }
             
             

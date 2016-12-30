@@ -46,6 +46,7 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
         
         APIManager.sharedInstance.getAllPapers()
         APIManager.sharedInstance.getVersion()
+        APIManager.sharedInstance.getLastUpdate()
         
     }
 
