@@ -120,9 +120,12 @@
 		4B01FB631DD7A02100F67DE8 /* BytePad-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				4B915B5F1E16CB9F00FAB22E /* Paper+CoreDataClass.swift */,
+				4B915B601E16CB9F00FAB22E /* Paper+CoreDataProperties.swift */,
 				4B01FB931DD7AA5900F67DE8 /* Views */,
 				4B01FB921DD7AA3F00F67DE8 /* Controllers */,
 				4B01FB641DD7A02100F67DE8 /* AppDelegate.swift */,
+				4B915B5C1E16C83400FAB22E /* BytePad-iOS.xcdatamodeld */,
 				4B01FB6B1DD7A02100F67DE8 /* Assets.xcassets */,
 				4B01FB701DD7A02100F67DE8 /* Info.plist */,
 			);
@@ -263,7 +266,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Software Incubator";
 				TargetAttributes = {
 					4B01FB601DD7A02100F67DE8 = {
@@ -490,7 +493,9 @@
 			files = (
 				4BC952D81E16A0260077041F /* APIManager.swift in Sources */,
 				4B01FB671DD7A02100F67DE8 /* SearchViewController.swift in Sources */,
+				4B915B5E1E16C83400FAB22E /* BytePad-iOS.xcdatamodeld in Sources */,
 				4B01FB651DD7A02100F67DE8 /* AppDelegate.swift in Sources */,
+				4B915B621E16CB9F00FAB22E /* Paper+CoreDataProperties.swift in Sources */,
 				4B01FB971DD7B7AC00F67DE8 /* DownloadsViewController.swift in Sources */,
 				4BC952DA1E16A0A20077041F /* Router.swift in Sources */,
 			);
@@ -565,6 +570,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -615,6 +621,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -644,6 +651,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 70543745A141FC55E3307497 /* Pods-BytePad-iOS.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = BF2TK9A67K;
 				INFOPLIST_FILE = "BytePad-iOS/Info.plist";
@@ -658,6 +666,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 812607964D64FC76116CC081 /* Pods-BytePad-iOS.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = BF2TK9A67K;
 				INFOPLIST_FILE = "BytePad-iOS/Info.plist";
@@ -770,6 +779,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		4B915B5C1E16C83400FAB22E /* BytePad-iOS.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4B915B5D1E16C83400FAB22E /* BytePad-iOS.xcdatamodel */,
+			);
+			currentVersion = 4B915B5D1E16C83400FAB22E /* BytePad-iOS.xcdatamodel */;
+			path = "BytePad-iOS.xcdatamodeld";
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 4B01FB591DD7A02100F67DE8 /* Project object */;
 }
