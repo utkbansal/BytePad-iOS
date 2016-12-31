@@ -7,12 +7,25 @@
 //
 
 import UIKit
+import QuickLook
 
-class DownloadsViewController: UIViewController {
+class DownloadsViewController: UIViewController, QLPreviewControllerDataSource {
 
     @IBOutlet weak var downloadsTableView: UITableView!
     
     var downloadedPapers: [(name: String, url: String)] = []
+    let preview = QLPreviewController()
+    
+    // MARK: QLPreview
+    
+    func numberOfPreviewItems(in controller: QLPreviewController) -> Int {
+        return 1
+    }
+    
+    func previewController(_ controller: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem {
+        let url:URL = URL(string: self.downloadedPapers[index].url)!
+        return url as QLPreviewItem
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -24,10 +37,6 @@ class DownloadsViewController: UIViewController {
             print(directoryContents)
             
             for  file in directoryContents {
-                print(file.lastPathComponent)
-                print(file.absoluteURL)
-                print(file.baseURL)
-                print((file as NSURL).filePathURL)
                 
                 // Save the data in the list as a tuple
                 self.downloadedPapers.append((file.lastPathComponent, file.absoluteString))
@@ -45,6 +54,10 @@ class DownloadsViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         self.downloadsTableView.dataSource = self
+        self.downloadsTableView.delegate = self
+        self.preview.dataSource = self
+        self.preview.delegate = self
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -54,6 +67,15 @@ class DownloadsViewController: UIViewController {
     }
     
 
+}
+
+extension DownloadsViewController: QLPreviewControllerDelegate {
+    
+    
+    func previewControllerWillDismiss(_ controller: QLPreviewController) {
+        self.tabBarController?.tabBar.isHidden = false
+    }
+    
 }
 
 extension DownloadsViewController: UITableViewDataSource {
@@ -66,6 +88,20 @@ extension DownloadsViewController: UITableViewDataSource {
         cell?.textLabel?.text = self.downloadedPapers[indexPath.row].name
         
         return cell!
+        
+    }
+}
+
+extension DownloadsViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        print(self.downloadedPapers[(indexPath as NSIndexPath).row].url)
+        
+        //        performSegueWithIdentifier("DocumentViewSegue", sender: items[indexPath.row].url)
+    
+        self.preview.currentPreviewItemIndex = (indexPath as NSIndexPath).row
+        self.tabBarController?.tabBar.isHidden = true
+        navigationController?.pushViewController(preview, animated: true)
         
     }
 }
