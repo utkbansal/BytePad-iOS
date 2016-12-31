@@ -17,13 +17,22 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
     @IBOutlet weak var loadingTextLabel: UILabel!
     
     var papers: [Paper] = []
+    var filteredPapers: [Paper] = []
     
     
     // MARK: Search controlls
     
     func filterContentForSearchText(searchText: String, scope: String = "All") {
+        print(searchText)
         
-        // Filter paper objects according to needs
+        self.filteredPapers = papers.filter {
+            paper in
+            return paper.name!.lowercased().contains(searchText.lowercased())
+        }
+        
+        print(self.filteredPapers)
+        
+        self.searchTableView.reloadData()
     
     }
     
@@ -103,12 +112,21 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
 extension SearchViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if self.searchController.isActive && self.searchController.searchBar.text != "" {
+            return filteredPapers.count
+        }
         return self.papers.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.searchTableView.dequeueReusableCell(withIdentifier: "search-cell") as! SearchCell
-        let paper = self.papers[indexPath.row]
+        let paper: Paper
+        if searchController.isActive && searchController.searchBar.text != "" {
+            paper = self.filteredPapers[indexPath.row]
+            print(paper)
+        } else {
+            paper = self.papers[indexPath.row]
+        }
         cell.nameLabel.text = paper.name
         cell.examTypeLabel.text = paper.examTypeID?.stringValue ?? "Not available"
         return cell
