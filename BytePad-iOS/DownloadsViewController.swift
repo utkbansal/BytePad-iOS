@@ -29,12 +29,14 @@ class DownloadsViewController: UIViewController, QLPreviewControllerDataSource {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        self.downloadedPapers = []
+        
         let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         
         // now lets get the directory contents (including folders)
         do {
             let directoryContents = try FileManager.default.contentsOfDirectory(at: documentsUrl, includingPropertiesForKeys: nil, options: FileManager.DirectoryEnumerationOptions())
-            print(directoryContents)
             
             for  file in directoryContents {
                 
@@ -45,6 +47,8 @@ class DownloadsViewController: UIViewController, QLPreviewControllerDataSource {
         } catch let error as NSError {
             print(error.localizedDescription)
         }
+        
+        self.downloadsTableView.reloadData()
         
     }
     
@@ -106,7 +110,21 @@ extension DownloadsViewController: UITableViewDelegate {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
         if editingStyle == .delete {
-
+//            let task = tasks[indexPath.row]
+//            context.delete(task)
+//            (UIApplication.shared.delegate as! AppDelegate).saveContext()
+//            getData()
+//            self.todoTableView.reloadData()
+            
+            let paper = self.downloadedPapers[indexPath.row]
+            do {
+                try FileManager.default.removeItem(at: URL(string: paper.url)!)
+            }
+            catch {
+                print("deletion error")
+            }
+            
+            self.downloadsTableView.isEditing = false
         }
     }
 }
