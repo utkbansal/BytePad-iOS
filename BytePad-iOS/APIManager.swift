@@ -11,8 +11,9 @@ import Alamofire
 import SwiftyJSON
 
 protocol APIManagerDelegate: class {
-    func didFinishTask()
-    func didFinishDownload()
+    func didFinishDownloadAll(success: Bool)
+    func didFinishDownload(success: Bool)
+    func didFinishUpdate(success: Bool)
 }
 
 
@@ -43,10 +44,11 @@ class APIManager {
                         delegate.saveContext()
                     }
                 }
-                self.delegate?.didFinishTask()
+                self.delegate?.didFinishDownloadAll(success: true)
             } else {
                 
                 print("kuch to hua hai")
+                self.delegate?.didFinishDownloadAll(success: false)
             }
         }
     }
@@ -76,10 +78,13 @@ class APIManager {
                         print(date)
                     }
                     
+                    self.delegate?.didFinishUpdate(success: true)
+                    
                 }
             }
             else {
                 print("error")
+                self.delegate?.didFinishUpdate(success: false)
                 
             }
         }
@@ -96,11 +101,13 @@ class APIManager {
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
             if response.error == nil{
                 print("Downloaded file successfully")
+                
+                self.delegate?.didFinishDownload(success: true)
             }
             else{
                 print("Failed with error: \(response.error)")
+                self.delegate?.didFinishDownload(success: false)
             }
-            self.delegate?.didFinishDownload()
         }
         
         

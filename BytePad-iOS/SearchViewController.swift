@@ -163,15 +163,22 @@ extension SearchViewController: UITableViewDelegate {
 }
 
 extension SearchViewController: APIManagerDelegate {
-    func didFinishTask() {
+    
+    func didFinishDownloadAll(success: Bool) {
         self.loadData()
         self.hideLoading()
-        
     }
     
-    func didFinishDownload() {
+    func didFinishDownload(success: Bool) {
         self.tabBarController?.tabBar.items?.last?.badgeValue = "1"
+
     }
+    
+    func didFinishUpdate(success: Bool) {
+        self.loadData()
+    }
+    
+    
 }
 
 
