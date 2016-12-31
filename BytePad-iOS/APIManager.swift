@@ -21,8 +21,11 @@ class APIManager {
     weak var delegate: APIManagerDelegate?
     
     func getAllPapers() {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         Alamofire.request(Router.getAll()).responseJSON {
             response in
+            
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
             
             if response.result.isSuccess == true {
                 let delegate = UIApplication.shared.delegate as! AppDelegate
@@ -49,8 +52,10 @@ class APIManager {
     }
     
     func getVersion() {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         Alamofire.request(Router.getVersion()).responseString {
             response in
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
             if let recievedString = response.result.value {
                 print(recievedString)
             }
@@ -58,8 +63,10 @@ class APIManager {
     }
     
     func getLastUpdate() {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         Alamofire.request(Router.getLastUpdate()).responseJSON{
             response in
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
             if let data = response.result.value {
                 let json = JSON(data)
                 if let dateString: String = json.stringValue.components(separatedBy: ".").first {
@@ -79,13 +86,14 @@ class APIManager {
     }
     
     func downloadPaper(url: String) {
-        
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         let destination = DownloadRequest.suggestedDownloadDestination(for: .documentDirectory, in: .userDomainMask)
 //        let fileURL = URL(string: url.replacingOccurrences(of: " ", with: "%20"))
         let fileURL = URL(string: "http://placehold.it/600/f66b97")
         
         Alamofire.download(fileURL!, to: destination).response {
             response in
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
             if response.error == nil{
                 print("Downloaded file successfully")
             }
