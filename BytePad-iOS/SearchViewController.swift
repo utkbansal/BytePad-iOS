@@ -86,6 +86,7 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
         
         
         APIManager.sharedInstance.delegate = self
+        APIManager.sharedInstance.getLastUpdate()
         
     }
     
@@ -106,9 +107,6 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
             self.loadData()
             
         }
-        
-        
-//        self.hideLoading()
     }
 }
 

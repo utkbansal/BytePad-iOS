@@ -50,6 +50,7 @@ enum Router: URLRequestConvertible {
         
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = method.rawValue
+//        urlRequest.timeoutInterval = 5
         let encoding = JSONEncoding.default
         return try encoding.encode(urlRequest, with: nil)
         

@@ -12,6 +12,7 @@ import SwiftyJSON
 
 protocol APIManagerDelegate: class {
     func didFinishTask()
+    func didFinishDownload()
 }
 
 
@@ -40,6 +41,9 @@ class APIManager {
                     }
                 }
                 self.delegate?.didFinishTask()
+            } else {
+                
+                print("kuch to hua hai")
             }
         }
     }
@@ -54,30 +58,43 @@ class APIManager {
     }
     
     func getLastUpdate() {
-        Alamofire.request(Router.getLastUpdate()).responseString{
+        Alamofire.request(Router.getLastUpdate()).responseJSON{
             response in
-            if let recievedString = response.result.value {
-                print(recievedString)
+            if let data = response.result.value {
+                let json = JSON(data)
+                if let dateString: String = json.stringValue.components(separatedBy: ".").first {
+                    let dateFormatter: DateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+                    if let date = dateFormatter.date(from: dateString) {
+                        print(date)
+                    }
+                    
+                }
+            }
+            else {
+                print("error")
+                
             }
         }
-        
     }
     
     func downloadPaper(url: String) {
         
         let destination = DownloadRequest.suggestedDownloadDestination(for: .documentDirectory, in: .userDomainMask)
-        let fileURL = URL(string: url.replacingOccurrences(of: " ", with: "%20"))
-        print(fileURL)
+//        let fileURL = URL(string: url.replacingOccurrences(of: " ", with: "%20"))
+        let fileURL = URL(string: "http://placehold.it/600/f66b97")
         
-//        Alamofire.download(fileURL!, to: destination).response {
-//            response in
-//            if response.error == nil{
-//                print("Downloaded file successfully")
-//            }
-//            else{
-//                print("Failed with error: \(response.error)")
-//            }
-//        }
+        Alamofire.download(fileURL!, to: destination).response {
+            response in
+            if response.error == nil{
+                print("Downloaded file successfully")
+            }
+            else{
+                print("Failed with error: \(response.error)")
+            }
+            self.delegate?.didFinishDownload()
+        }
+        
         
         
     }
