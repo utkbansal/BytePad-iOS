@@ -15,7 +15,10 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
     @IBOutlet weak var searchTableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var loadingTextLabel: UILabel!
+    @IBOutlet weak var retryButton: UIButton!
     
+    @IBAction func retryButtonTapped(_ sender: Any) {
+    }
     var papers: [Paper] = []
     var filteredPapers: [Paper] = []
     
@@ -47,14 +50,26 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
         self.activityIndicator.startAnimating()
         self.activityIndicator.isHidden = false
         self.loadingTextLabel.isHidden = false
+        self.loadingTextLabel.text = "Moving satalites into position..."
         self.searchTableView.isHidden = true
+        self.retryButton.isHidden = true
     }
     
-    func hideLoading() {
+    func showTable() {
         self.activityIndicator.stopAnimating()
         self.activityIndicator.isHidden = true
         self.loadingTextLabel.isHidden = true
         self.searchTableView.isHidden = false
+        self.retryButton.isHidden = true
+    }
+    
+    func showRetry() {
+        self.activityIndicator.stopAnimating()
+        self.activityIndicator.isHidden = true
+        self.searchTableView.isHidden = true
+        self.loadingTextLabel.text = "Some error occured!"
+        self.loadingTextLabel.isHidden = false
+        self.retryButton.isHidden = false
     }
     
     func loadData() {
@@ -100,10 +115,9 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
             // Call get all papers endpoint and populate db
             APIManager.sharedInstance.getAllPapers()
             
-            UserDefaults.standard.set(true, forKey: "launchedBefore")
         }
         else {
-            self.hideLoading()
+            self.showTable()
             self.loadData()
             
         }
@@ -165,12 +179,27 @@ extension SearchViewController: UITableViewDelegate {
 extension SearchViewController: APIManagerDelegate {
     
     func didFinishDownloadAll(success: Bool) {
-        self.loadData()
-        self.hideLoading()
+        if success {
+            // First launch is considered only when the data is successfully saved for the first time
+            UserDefaults.standard.set(true, forKey: "launchedBefore")
+            self.loadData()
+            self.showTable()
+        }
+        else {
+            self.showRetry()
+        }
     }
     
     func didFinishDownload(success: Bool) {
-        self.tabBarController?.tabBar.items?.last?.badgeValue = "1"
+        if success {
+            self.tabBarController?.tabBar.items?.last?.badgeValue = "1"
+        }
+        else {
+            let alert = UIAlertController(title: "Download Failed!", message: "The download has failed due to some unexpected reason. Please check your network.", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+        
 
     }
     

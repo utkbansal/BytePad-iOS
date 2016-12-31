@@ -30,7 +30,7 @@
                                         <rect key="frame" x="0.0" y="28" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0Ke-Ph-vly" id="QhQ-Rj-SgP">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="59.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EcG-le-08e">
@@ -77,12 +77,21 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nw8-iK-aDg">
+                                <rect key="frame" x="137" y="315" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="retryButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5eY-4a-sHs"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="kNB-X2-FHd" firstAttribute="bottom" secondItem="Nw8-iK-aDg" secondAttribute="top" constant="8" id="8I8-1M-Z7Q"/>
                             <constraint firstItem="kNB-X2-FHd" firstAttribute="top" secondItem="U1y-4B-qAH" secondAttribute="bottom" constant="8" id="BTT-fi-L4m"/>
                             <constraint firstItem="GHO-9Z-QnR" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="O1j-nq-Vcv"/>
                             <constraint firstItem="U1y-4B-qAH" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="SLl-e4-fRo"/>
+                            <constraint firstItem="Nw8-iK-aDg" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="VZO-rq-msV"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="GHO-9Z-QnR" secondAttribute="bottom" id="Z8e-IH-5Ow"/>
                             <constraint firstAttribute="trailingMargin" secondItem="kNB-X2-FHd" secondAttribute="trailing" id="ZhX-Yk-5he"/>
                             <constraint firstItem="GHO-9Z-QnR" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="chi-Ch-Crn"/>
@@ -95,6 +104,7 @@
                     <connections>
                         <outlet property="activityIndicator" destination="U1y-4B-qAH" id="9Kf-7P-s9i"/>
                         <outlet property="loadingTextLabel" destination="kNB-X2-FHd" id="R2K-eh-GcT"/>
+                        <outlet property="retryButton" destination="Nw8-iK-aDg" id="mFf-RK-Szf"/>
                         <outlet property="searchTableView" destination="GHO-9Z-QnR" id="IUi-rK-yoE"/>
                     </connections>
                 </viewController>
