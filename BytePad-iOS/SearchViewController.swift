@@ -107,6 +107,8 @@ extension SearchViewController: UITableViewDataSource {
         let cell = self.searchTableView.dequeueReusableCell(withIdentifier: "search-cell") as! SearchCell
         let paper = self.papers[indexPath.row]
         cell.nameLabel.text = paper.name
+        print(paper.examTypeID)
+        print(paper.examTypeID?.stringValue)
         cell.examTypeLabel.text = "xxx"
         return cell
     }

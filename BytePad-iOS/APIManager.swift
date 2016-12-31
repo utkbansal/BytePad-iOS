@@ -34,8 +34,8 @@ class APIManager {
                         
                         paper.fileURL =  item.1.dictionaryValue["file_url"]?.stringValue
                         paper.semester = item.1.dictionaryValue["semester"]?.numberValue
-                        paper.examTypeID = item.1.dictionaryValue["exam)type_id"]?.numberValue
-                        paper.name = paper.fileURL?.components(separatedBy: "/").last
+                        paper.examTypeID = item.1.dictionaryValue["exam_type_id"]?.numberValue
+                        paper.name = paper.fileURL?.components(separatedBy: "/").last?.components(separatedBy: ".").dropLast().joined()
                         delegate.saveContext()
                     }
                 }
