@@ -85,6 +85,8 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
         searchController.searchBar.delegate = self
         
         
+        APIManager.sharedInstance.delegate = self
+        
         
         let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
         
@@ -93,7 +95,6 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
             self.showLoading()
             
             // Call get all papers endpoint and populate db
-            APIManager.sharedInstance.delegate = self
             APIManager.sharedInstance.getAllPapers()
         
             UserDefaults.standard.set(true, forKey: "launchedBefore")
@@ -160,6 +161,11 @@ extension SearchViewController: APIManagerDelegate {
     func didFinishTask() {
         self.loadData()
         self.hideLoading()
+        
+    }
+    
+    func didFinishDownload() {
+        self.tabBarController?.tabBar.items?.last?.badgeValue = "1"
     }
 }
 
