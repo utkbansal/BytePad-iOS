@@ -69,6 +69,7 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
         super.viewDidLoad()
         
         self.searchTableView.dataSource = self
+        self.searchTableView.delegate = self
         
         self.searchController.searchResultsUpdater = self
         self.searchController.dimsBackgroundDuringPresentation = false
@@ -76,6 +77,8 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
         self.searchTableView.tableHeaderView = searchController.searchBar
         searchController.searchBar.scopeButtonTitles = ["All", "ST1", "ST2", "PUT", "UT"]
         searchController.searchBar.delegate = self
+        
+        
         
         let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
         
@@ -107,10 +110,33 @@ extension SearchViewController: UITableViewDataSource {
         let cell = self.searchTableView.dequeueReusableCell(withIdentifier: "search-cell") as! SearchCell
         let paper = self.papers[indexPath.row]
         cell.nameLabel.text = paper.name
-        print(paper.examTypeID)
-        print(paper.examTypeID?.stringValue)
-        cell.examTypeLabel.text = "xxx"
+        cell.examTypeLabel.text = paper.examTypeID?.stringValue ?? "Not available"
         return cell
+    }
+    
+}
+
+// MARK: Table View delegate
+extension SearchViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let downloadButton = UITableViewRowAction(style: .normal, title: "Download") {
+            action, index in
+            
+            let paper = self.papers[indexPath.row]
+            let url = paper.fileURL
+            
+            // Call the download endpoint
+            
+            self.searchTableView.isEditing = false
+        }
+        
+        downloadButton.backgroundColor = UIColor.lightGray
+        
+        return [downloadButton]
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
     }
 }
 
