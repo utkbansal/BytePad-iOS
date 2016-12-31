@@ -96,12 +96,17 @@ extension DownloadsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         print(self.downloadedPapers[(indexPath as NSIndexPath).row].url)
-        
-        //        performSegueWithIdentifier("DocumentViewSegue", sender: items[indexPath.row].url)
-    
         self.preview.currentPreviewItemIndex = (indexPath as NSIndexPath).row
         self.tabBarController?.tabBar.isHidden = true
         navigationController?.pushViewController(preview, animated: true)
         
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        
+        if editingStyle == .delete {
+
+        }
     }
 }
