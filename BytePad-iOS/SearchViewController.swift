@@ -87,7 +87,9 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
         
         APIManager.sharedInstance.delegate = self
         
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
         
         if !launchedBefore {
@@ -96,12 +98,17 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
             
             // Call get all papers endpoint and populate db
             APIManager.sharedInstance.getAllPapers()
-        
+            
             UserDefaults.standard.set(true, forKey: "launchedBefore")
         }
+        else {
+            self.hideLoading()
+            self.loadData()
+            
+        }
         
-        self.loadData()
-        self.hideLoading()
+        
+//        self.hideLoading()
     }
 }
 
