@@ -21,7 +21,6 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
     
     
     // MARK: Search controlls
-    
     func filterContentForSearchText(searchText: String, scope: String = "All") {
         print(searchText)
         
@@ -29,8 +28,6 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
             paper in
             return paper.name!.lowercased().contains(searchText.lowercased())
         }
-        
-        print(self.filteredPapers)
         
         self.searchTableView.reloadData()
     
@@ -144,6 +141,7 @@ extension SearchViewController: UITableViewDelegate {
             let url = paper.fileURL
             
             // Call the download endpoint
+            APIManager.sharedInstance.downloadPaper(url: url!)
             
             self.searchTableView.isEditing = false
         }

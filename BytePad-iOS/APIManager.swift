@@ -62,4 +62,24 @@ class APIManager {
         }
         
     }
+    
+    func downloadPaper(url: String) {
+        
+        let destination = DownloadRequest.suggestedDownloadDestination(for: .documentDirectory, in: .userDomainMask)
+        let fileURL = URL(string: url.replacingOccurrences(of: " ", with: "%20"))
+        print(fileURL)
+        
+//        Alamofire.download(fileURL!, to: destination).response {
+//            response in
+//            if response.error == nil{
+//                print("Downloaded file successfully")
+//            }
+//            else{
+//                print("Failed with error: \(response.error)")
+//            }
+//        }
+        
+        
+    }
+    
 }
