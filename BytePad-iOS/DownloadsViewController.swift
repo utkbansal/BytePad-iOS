@@ -88,10 +88,11 @@ extension DownloadsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = self.downloadsTableView.dequeueReusableCell(withIdentifier: "downloads-cell")
-        cell?.textLabel?.text = self.downloadedPapers[indexPath.row].name
+        let cell = self.downloadsTableView.dequeueReusableCell(withIdentifier: "downloads-cell") as! DownloadCell
+        cell.paperNameLabel.text = self.downloadedPapers[indexPath.row].name
+        cell.extraInfoLabel.text = "PDF Document"
         
-        return cell!
+        return cell
         
     }
 }
@@ -107,8 +108,6 @@ extension DownloadsViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        
         if editingStyle == .delete {
             
             let paper = self.downloadedPapers[indexPath.row]
@@ -126,4 +125,5 @@ extension DownloadsViewController: UITableViewDelegate {
             self.downloadsTableView.isEditing = false
         }
     }
+    
 }

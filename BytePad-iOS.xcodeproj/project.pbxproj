@@ -16,6 +16,7 @@
 		4B01FB7A1DD7A02100F67DE8 /* BytePad_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B01FB791DD7A02100F67DE8 /* BytePad_iOSTests.swift */; };
 		4B01FB851DD7A02100F67DE8 /* BytePad_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B01FB841DD7A02100F67DE8 /* BytePad_iOSUITests.swift */; };
 		4B01FB971DD7B7AC00F67DE8 /* DownloadsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B01FB961DD7B7AC00F67DE8 /* DownloadsViewController.swift */; };
+		4B6A5E751E197540005421D2 /* DownloadCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6A5E741E197540005421D2 /* DownloadCell.swift */; };
 		4B915B5E1E16C83400FAB22E /* BytePad-iOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4B915B5C1E16C83400FAB22E /* BytePad-iOS.xcdatamodeld */; };
 		4B915B611E16CB9F00FAB22E /* Paper+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B915B5F1E16CB9F00FAB22E /* Paper+CoreDataClass.swift */; };
 		4B915B621E16CB9F00FAB22E /* Paper+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B915B601E16CB9F00FAB22E /* Paper+CoreDataProperties.swift */; };
@@ -59,6 +60,7 @@
 		4B01FB841DD7A02100F67DE8 /* BytePad_iOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BytePad_iOSUITests.swift; sourceTree = "<group>"; };
 		4B01FB861DD7A02100F67DE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4B01FB961DD7B7AC00F67DE8 /* DownloadsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadsViewController.swift; sourceTree = "<group>"; };
+		4B6A5E741E197540005421D2 /* DownloadCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadCell.swift; sourceTree = "<group>"; };
 		4B915B5D1E16C83400FAB22E /* BytePad-iOS.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "BytePad-iOS.xcdatamodel"; sourceTree = "<group>"; };
 		4B915B5F1E16CB9F00FAB22E /* Paper+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Paper+CoreDataClass.swift"; sourceTree = "<group>"; };
 		4B915B601E16CB9F00FAB22E /* Paper+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Paper+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -128,8 +130,7 @@
 		4B01FB631DD7A02100F67DE8 /* BytePad-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				4B915B5F1E16CB9F00FAB22E /* Paper+CoreDataClass.swift */,
-				4B915B601E16CB9F00FAB22E /* Paper+CoreDataProperties.swift */,
+				4B6A5E731E196F82005421D2 /* Models */,
 				4B01FB931DD7AA5900F67DE8 /* Views */,
 				4B01FB921DD7AA3F00F67DE8 /* Controllers */,
 				4B01FB641DD7A02100F67DE8 /* AppDelegate.swift */,
@@ -163,6 +164,7 @@
 			children = (
 				4B01FB661DD7A02100F67DE8 /* SearchViewController.swift */,
 				4B915B631E17832B00FAB22E /* SearchCell.swift */,
+				4B6A5E741E197540005421D2 /* DownloadCell.swift */,
 				4B01FB961DD7B7AC00F67DE8 /* DownloadsViewController.swift */,
 				4BC952D71E16A0260077041F /* APIManager.swift */,
 				4BC952D91E16A0A20077041F /* Router.swift */,
@@ -177,6 +179,15 @@
 				4B01FB6D1DD7A02100F67DE8 /* LaunchScreen.storyboard */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		4B6A5E731E196F82005421D2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4B915B601E16CB9F00FAB22E /* Paper+CoreDataProperties.swift */,
+				4B915B5F1E16CB9F00FAB22E /* Paper+CoreDataClass.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		58713905D3B81EF3311D1564 /* Frameworks */ = {
@@ -503,6 +514,7 @@
 				4BC952D81E16A0260077041F /* APIManager.swift in Sources */,
 				4B915B611E16CB9F00FAB22E /* Paper+CoreDataClass.swift in Sources */,
 				4B01FB671DD7A02100F67DE8 /* SearchViewController.swift in Sources */,
+				4B6A5E751E197540005421D2 /* DownloadCell.swift in Sources */,
 				4B915B5E1E16C83400FAB22E /* BytePad-iOS.xcdatamodeld in Sources */,
 				4B915B641E17832B00FAB22E /* SearchCell.swift in Sources */,
 				4B01FB651DD7A02100F67DE8 /* AppDelegate.swift in Sources */,
