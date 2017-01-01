@@ -19,11 +19,12 @@ class DownloadsViewController: UIViewController, QLPreviewControllerDataSource {
     // MARK: QLPreview
     
     func numberOfPreviewItems(in controller: QLPreviewController) -> Int {
-        return 1
+        return self.downloadedPapers.count
     }
     
     func previewController(_ controller: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem {
         let url:URL = URL(string: self.downloadedPapers[index].url)!
+        
         return url as QLPreviewItem
     }
     
@@ -119,8 +120,6 @@ extension DownloadsViewController: UITableViewDelegate {
             catch {
                 print("deletion error")
             }
-            
-            
             
             self.downloadsTableView.isEditing = false
         }
