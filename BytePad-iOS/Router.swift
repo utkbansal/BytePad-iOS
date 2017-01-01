@@ -10,11 +10,12 @@ import Foundation
 import Alamofire
 
 enum Router: URLRequestConvertible {
-    static let baseURLString = "http://testapi.silive.in/api/"
+    static let baseURLString = "http://testapi.silive.in/"
     
     case getAll()
     case getVersion()
     case getLastUpdate()
+    case getPaper(String)
     
     func asURLRequest() throws -> URLRequest {
         var method: HTTPMethod {
@@ -25,20 +26,22 @@ enum Router: URLRequestConvertible {
                 return .get
             case .getLastUpdate():
                 return .get
+            case .getPaper(_):
+                return .get
             }
-        
-            
         }
         
         let url: URL = {
             let relativePath: String
             switch self {
             case .getAll():
-                relativePath = "get_list_"
+                relativePath = "api/get_list_"
             case .getVersion():
-                relativePath = "get_verison_"
+                relativePath = "api/get_verison_"
             case .getLastUpdate():
-                relativePath = "last_update_"
+                relativePath = "api/last_update_"
+            case .getPaper(let relativeURL):
+                relativePath = "PaperFileUpload/" + relativeURL
             }
             
             

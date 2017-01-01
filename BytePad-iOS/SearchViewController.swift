@@ -101,7 +101,6 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
         
         
         APIManager.sharedInstance.delegate = self
-        APIManager.sharedInstance.getLastUpdate()
         
     }
     
@@ -119,6 +118,8 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
         else {
             self.showTable()
             self.loadData()
+            
+            APIManager.sharedInstance.getLastUpdate()
             
         }
     }
@@ -182,6 +183,8 @@ extension SearchViewController: APIManagerDelegate {
         if success {
             // First launch is considered only when the data is successfully saved for the first time
             UserDefaults.standard.set(true, forKey: "launchedBefore")
+            // Set timestamp for last update
+            UserDefaults.standard.set(Date(), forKey: "lastLocalUpdate")
             self.loadData()
             self.showTable()
         }
@@ -200,11 +203,21 @@ extension SearchViewController: APIManagerDelegate {
             self.present(alert, animated: true, completion: nil)
         }
         
-
     }
     
-    func didFinishUpdate(success: Bool) {
-        self.loadData()
+    func didGetUpdate(success: Bool) {
+        if success {
+            let localUpdate = UserDefaults.standard.object(forKey: "lastLocalUpdate") as! Date
+            let serverUpdate = UserDefaults.standard.object(forKey: "lastSeverUpdate") as! Date
+            print(serverUpdate)
+            print(localUpdate)
+            if serverUpdate > localUpdate {
+                let alert = UIAlertController(title: "Update", message: "New papers are now available. Do you want to update?", preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.default, handler: nil))
+                alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
     }
     
     

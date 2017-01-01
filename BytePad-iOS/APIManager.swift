@@ -13,7 +13,7 @@ import SwiftyJSON
 protocol APIManagerDelegate: class {
     func didFinishDownloadAll(success: Bool)
     func didFinishDownload(success: Bool)
-    func didFinishUpdate(success: Bool)
+    func didGetUpdate(success: Bool)
 }
 
 
@@ -47,7 +47,6 @@ class APIManager {
                 self.delegate?.didFinishDownloadAll(success: true)
             } else {
                 
-                print("kuch to hua hai")
                 self.delegate?.didFinishDownloadAll(success: false)
             }
         }
@@ -75,16 +74,13 @@ class APIManager {
                     let dateFormatter: DateFormatter = DateFormatter()
                     dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
                     if let date = dateFormatter.date(from: dateString) {
-                        print(date)
+                        UserDefaults.standard.set(date, forKey: "lastSeverUpdate")
+                        self.delegate?.didGetUpdate(success: true)
                     }
-                    
-                    self.delegate?.didFinishUpdate(success: true)
-                    
                 }
             }
             else {
-                print("error")
-                self.delegate?.didFinishUpdate(success: false)
+                self.delegate?.didGetUpdate(success: false)
                 
             }
         }
@@ -93,10 +89,8 @@ class APIManager {
     func downloadPaper(url: String) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         let destination = DownloadRequest.suggestedDownloadDestination(for: .documentDirectory, in: .userDomainMask)
-//        let fileURL = URL(string: url.replacingOccurrences(of: " ", with: "%20"))
-        let fileURL = URL(string: "http://placehold.it/600/f66b97")
         
-        Alamofire.download(fileURL!, to: destination).response {
+        Alamofire.download(Router.getPaper(url), to: destination).response {
             response in
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
             if response.error == nil{
