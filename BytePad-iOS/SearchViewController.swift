@@ -102,13 +102,10 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
         
         APIManager.sharedInstance.delegate = self
         
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
         let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
         
         if !launchedBefore {
-        
+            
             self.showLoading()
             
             // Call get all papers endpoint and populate db
@@ -123,7 +120,10 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
             
         }
     }
-}
+
+        
+    }
+    
 
 
 // MARK: Table View datasource

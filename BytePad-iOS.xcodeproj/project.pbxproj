@@ -17,6 +17,8 @@
 		4B01FB851DD7A02100F67DE8 /* BytePad_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B01FB841DD7A02100F67DE8 /* BytePad_iOSUITests.swift */; };
 		4B01FB971DD7B7AC00F67DE8 /* DownloadsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B01FB961DD7B7AC00F67DE8 /* DownloadsViewController.swift */; };
 		4B6A5E751E197540005421D2 /* DownloadCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6A5E741E197540005421D2 /* DownloadCell.swift */; };
+		4B6A5E781E197A5D005421D2 /* Download+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6A5E761E197A5D005421D2 /* Download+CoreDataClass.swift */; };
+		4B6A5E791E197A5D005421D2 /* Download+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6A5E771E197A5D005421D2 /* Download+CoreDataProperties.swift */; };
 		4B915B5E1E16C83400FAB22E /* BytePad-iOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4B915B5C1E16C83400FAB22E /* BytePad-iOS.xcdatamodeld */; };
 		4B915B611E16CB9F00FAB22E /* Paper+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B915B5F1E16CB9F00FAB22E /* Paper+CoreDataClass.swift */; };
 		4B915B621E16CB9F00FAB22E /* Paper+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B915B601E16CB9F00FAB22E /* Paper+CoreDataProperties.swift */; };
@@ -61,6 +63,8 @@
 		4B01FB861DD7A02100F67DE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4B01FB961DD7B7AC00F67DE8 /* DownloadsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadsViewController.swift; sourceTree = "<group>"; };
 		4B6A5E741E197540005421D2 /* DownloadCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadCell.swift; sourceTree = "<group>"; };
+		4B6A5E761E197A5D005421D2 /* Download+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Download+CoreDataClass.swift"; sourceTree = "<group>"; };
+		4B6A5E771E197A5D005421D2 /* Download+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Download+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		4B915B5D1E16C83400FAB22E /* BytePad-iOS.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "BytePad-iOS.xcdatamodel"; sourceTree = "<group>"; };
 		4B915B5F1E16CB9F00FAB22E /* Paper+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Paper+CoreDataClass.swift"; sourceTree = "<group>"; };
 		4B915B601E16CB9F00FAB22E /* Paper+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Paper+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -184,6 +188,8 @@
 		4B6A5E731E196F82005421D2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				4B6A5E761E197A5D005421D2 /* Download+CoreDataClass.swift */,
+				4B6A5E771E197A5D005421D2 /* Download+CoreDataProperties.swift */,
 				4B915B601E16CB9F00FAB22E /* Paper+CoreDataProperties.swift */,
 				4B915B5F1E16CB9F00FAB22E /* Paper+CoreDataClass.swift */,
 			);
@@ -511,6 +517,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B6A5E781E197A5D005421D2 /* Download+CoreDataClass.swift in Sources */,
 				4BC952D81E16A0260077041F /* APIManager.swift in Sources */,
 				4B915B611E16CB9F00FAB22E /* Paper+CoreDataClass.swift in Sources */,
 				4B01FB671DD7A02100F67DE8 /* SearchViewController.swift in Sources */,
@@ -519,6 +526,7 @@
 				4B915B641E17832B00FAB22E /* SearchCell.swift in Sources */,
 				4B01FB651DD7A02100F67DE8 /* AppDelegate.swift in Sources */,
 				4B915B621E16CB9F00FAB22E /* Paper+CoreDataProperties.swift in Sources */,
+				4B6A5E791E197A5D005421D2 /* Download+CoreDataProperties.swift in Sources */,
 				4B01FB971DD7B7AC00F67DE8 /* DownloadsViewController.swift in Sources */,
 				4BC952DA1E16A0A20077041F /* Router.swift in Sources */,
 			);
