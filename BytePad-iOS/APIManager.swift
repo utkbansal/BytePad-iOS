@@ -95,13 +95,9 @@ class APIManager {
             if response.error == nil{
                 
                 let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-                do {
-                    let download = Download(context: context)
-                    download.fileName = url.components(separatedBy: "/").last!
-                    try context.save()
-                } catch {
-                    print("Download not saved")
-                }
+                let download = Download(context: context)
+                download.fileName = url.components(separatedBy: "/").last!
+                (UIApplication.shared.delegate as! AppDelegate).saveContext()
                 
                 self.delegate?.didFinishDownload(success: true)
             }

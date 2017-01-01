@@ -103,17 +103,25 @@ extension DownloadsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             
-//            let paper = self.downloadedPapers[indexPath.row]
-//            do {
-//                try FileManager.default.removeItem(at: URL(string: paper.url)!)
-//                self.downloadedPapers.remove(at: indexPath.row)
-//                self.downloadsTableView.reloadData()
-//            }
-//            catch {
-//                print("deletion error")
-//            }
-//            
-//            self.downloadsTableView.isEditing = false
+            let download = self.downloadedPapers[indexPath.row]
+            let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+            context.delete(download)
+            (UIApplication.shared.delegate as! AppDelegate).saveContext()
+            
+            do {
+                let documentsURL =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+                let fileURL = documentsURL.appendingPathComponent(self.downloadedPapers[indexPath.row].fileName)
+                try FileManager.default.removeItem(at: fileURL)
+                self.downloadedPapers.remove(at: indexPath.row)
+                self.downloadsTableView.reloadData()
+            }
+            catch {
+                print("deletion error")
+            }
+
+            
+            self.loadData()
+            
         }
     }
     
