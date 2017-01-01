@@ -35,7 +35,6 @@ class APIManager {
                     let json = JSON(data)
                     for item in json {
                         let paper = Paper(context: context)
-                        print(item)
                         
                         paper.fileURL =  item.1.dictionaryValue["file_url"]?.stringValue
                         paper.semester = item.1.dictionaryValue["semester"]?.numberValue
@@ -94,7 +93,15 @@ class APIManager {
             response in
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
             if response.error == nil{
-                print("Downloaded file successfully")
+                
+                let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+                do {
+                    let download = Download(context: context)
+                    download.fileName = url.components(separatedBy: "/").last!
+                    try context.save()
+                } catch {
+                    print("Download not saved")
+                }
                 
                 self.delegate?.didFinishDownload(success: true)
             }

@@ -13,7 +13,7 @@ class DownloadsViewController: UIViewController, QLPreviewControllerDataSource {
 
     @IBOutlet weak var downloadsTableView: UITableView!
     
-    var downloadedPapers: [(name: String, url: String)] = []
+    var downloadedPapers: [Download] = []
     let preview = QLPreviewController()
     
     // MARK: QLPreview
@@ -23,33 +23,27 @@ class DownloadsViewController: UIViewController, QLPreviewControllerDataSource {
     }
     
     func previewController(_ controller: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem {
-        let url:URL = URL(string: self.downloadedPapers[index].url)!
+        let documentsURL =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let fileURL = documentsURL.appendingPathComponent(self.downloadedPapers[index].fileName)
+        return fileURL as QLPreviewItem
+    }
+    
+    func loadData() {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
-        return url as QLPreviewItem
+        do {
+            self.downloadedPapers = try context.fetch(Download.createFetchRequest())
+            self.downloadsTableView.reloadData()
+        }
+        catch {
+            print("Fetching failed")
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        self.downloadedPapers = []
-        
-        let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        
-        // now lets get the directory contents (including folders)
-        do {
-            let directoryContents = try FileManager.default.contentsOfDirectory(at: documentsUrl, includingPropertiesForKeys: nil, options: FileManager.DirectoryEnumerationOptions())
-            
-            for  file in directoryContents {
-                
-                // Save the data in the list as a tuple
-                self.downloadedPapers.append((file.lastPathComponent, file.absoluteString))
-            }
-            
-        } catch let error as NSError {
-            print(error.localizedDescription)
-        }
-        
-        self.downloadsTableView.reloadData()
+        self.loadData()
         
     }
     
@@ -90,7 +84,7 @@ extension DownloadsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.downloadsTableView.dequeueReusableCell(withIdentifier: "downloads-cell") as! DownloadCell
-        cell.paperNameLabel.text = self.downloadedPapers[indexPath.row].name
+        cell.paperNameLabel.text = self.downloadedPapers[indexPath.row].fileName
         cell.extraInfoLabel.text = "PDF Document"
         
         return cell
@@ -100,8 +94,6 @@ extension DownloadsViewController: UITableViewDataSource {
 
 extension DownloadsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        print(self.downloadedPapers[(indexPath as NSIndexPath).row].url)
         self.preview.currentPreviewItemIndex = (indexPath as NSIndexPath).row
         self.tabBarController?.tabBar.isHidden = true
         navigationController?.pushViewController(preview, animated: true)
@@ -111,17 +103,17 @@ extension DownloadsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             
-            let paper = self.downloadedPapers[indexPath.row]
-            do {
-                try FileManager.default.removeItem(at: URL(string: paper.url)!)
-                self.downloadedPapers.remove(at: indexPath.row)
-                self.downloadsTableView.reloadData()
-            }
-            catch {
-                print("deletion error")
-            }
-            
-            self.downloadsTableView.isEditing = false
+//            let paper = self.downloadedPapers[indexPath.row]
+//            do {
+//                try FileManager.default.removeItem(at: URL(string: paper.url)!)
+//                self.downloadedPapers.remove(at: indexPath.row)
+//                self.downloadsTableView.reloadData()
+//            }
+//            catch {
+//                print("deletion error")
+//            }
+//            
+//            self.downloadsTableView.isEditing = false
         }
     }
     
