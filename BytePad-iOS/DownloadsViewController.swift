@@ -110,19 +110,18 @@ extension DownloadsViewController: UITableViewDelegate {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
         if editingStyle == .delete {
-//            let task = tasks[indexPath.row]
-//            context.delete(task)
-//            (UIApplication.shared.delegate as! AppDelegate).saveContext()
-//            getData()
-//            self.todoTableView.reloadData()
             
             let paper = self.downloadedPapers[indexPath.row]
             do {
                 try FileManager.default.removeItem(at: URL(string: paper.url)!)
+                self.downloadedPapers.remove(at: indexPath.row)
+                self.downloadsTableView.reloadData()
             }
             catch {
                 print("deletion error")
             }
+            
+            
             
             self.downloadsTableView.isEditing = false
         }
