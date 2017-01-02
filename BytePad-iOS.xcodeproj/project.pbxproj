@@ -297,8 +297,7 @@
 				TargetAttributes = {
 					4B01FB601DD7A02100F67DE8 = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = BF2TK9A67K;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					4B01FB741DD7A02100F67DE8 = {
 						CreatedOnToolsVersion = 8.1;
@@ -684,7 +683,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = BF2TK9A67K;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "BytePad-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "in.silive.BytePad-iOS";
@@ -699,11 +698,14 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = BF2TK9A67K;
 				INFOPLIST_FILE = "BytePad-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "in.silive.BytePad-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "40424b83-c515-47b9-ba38-ac3ff448908c";
+				PROVISIONING_PROFILE_SPECIFIER = BytePad;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
