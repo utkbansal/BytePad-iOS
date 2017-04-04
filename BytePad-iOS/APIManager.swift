@@ -40,7 +40,7 @@ class APIManager {
                         paper.fileURL =  item.1.dictionaryValue["file"]?.stringValue
                         paper.session = item.1.dictionaryValue["session"]?.stringValue
                         paper.exam = item.1.dictionaryValue["exam"]?.stringValue
-                        paper.name = paper.fileURL?.components(separatedBy: "/").last?.components(separatedBy: ".").dropLast().joined().replacingOccurrences(of: "_", with: " ")
+                        paper.name = item.1.dictionaryValue["name"]?.stringValue.components(separatedBy: ".").dropLast().joined()
                         delegate.saveContext()
                     }
                 }

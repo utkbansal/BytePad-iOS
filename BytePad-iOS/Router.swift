@@ -33,21 +33,21 @@ enum Router: URLRequestConvertible {
         
         let url: URL = {
             let relativePath: String
+            var url = URL(string: Router.baseURLString)
             switch self {
             case .getAll():
                 relativePath = "api/list"
+                url?.appendPathComponent(relativePath)
             case .getVersion():
                 relativePath = "api/get_verison_"
+                url?.appendPathComponent(relativePath)
             case .getLastUpdate():
                 relativePath = "api/last_update_"
-            case .getPaper(let relativeURL):
-                relativePath = "PaperFileUpload/" + relativeURL
+                url?.appendPathComponent(relativePath)
+            case .getPaper(let absoluteURL):
+                url = URL(string: absoluteURL)
             }
             
-            
-            
-            var url = URL(string: Router.baseURLString)
-            url?.appendPathComponent(relativePath)
             return url!
         }()
         
