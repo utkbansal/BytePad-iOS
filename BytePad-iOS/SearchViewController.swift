@@ -18,6 +18,9 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
     @IBOutlet weak var retryButton: UIButton!
     
     @IBAction func retryButtonTapped(_ sender: Any) {
+        self.showLoading()
+        // Call get all papers endpoint and populate db
+        APIManager.sharedInstance.getAllPapers()
     }
     var papers: [Paper] = []
     var filteredPapers: [Paper] = []
