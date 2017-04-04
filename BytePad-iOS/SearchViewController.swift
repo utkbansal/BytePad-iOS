@@ -195,7 +195,7 @@ extension SearchViewController: APIManagerDelegate {
     
     func didFinishDownload(success: Bool) {
         if success {
-            self.tabBarController?.tabBar.items?.last?.badgeValue = "1"
+            self.tabBarController?.tabBar.items?.last?.badgeValue = "new"
         }
         else {
             let alert = UIAlertController(title: "Download Failed!", message: "The download has failed due to some unexpected reason. Please check your network.", preferredStyle: UIAlertControllerStyle.alert)

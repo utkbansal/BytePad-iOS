@@ -44,6 +44,7 @@ class DownloadsViewController: UIViewController, QLPreviewControllerDataSource {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.loadData()
+        self.tabBarController?.tabBar.items?.last?.badgeValue = nil
         
     }
     
