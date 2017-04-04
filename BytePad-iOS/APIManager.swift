@@ -70,13 +70,14 @@ class APIManager {
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
             if let data = response.result.value {
                 let json = JSON(data)
-                if let dateString: String = json.stringValue.components(separatedBy: ".").first {
-                    let dateFormatter: DateFormatter = DateFormatter()
-                    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-                    if let date = dateFormatter.date(from: dateString) {
-                        UserDefaults.standard.set(date, forKey: "lastSeverUpdate")
-                        self.delegate?.didGetUpdate(success: true)
-                    }
+                let ts = json.dictionaryValue["timestamp"]?.stringValue
+                
+                let dateFormatter: DateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ssZ"
+                if let date = dateFormatter.date(from: ts!) {
+                    UserDefaults.standard.set(date, forKey: "lastSeverUpdate")
+                    self.delegate?.didGetUpdate(success: true)
+                    
                 }
             }
             else {

@@ -42,9 +42,10 @@ enum Router: URLRequestConvertible {
                 relativePath = "api/get_verison_"
                 url?.appendPathComponent(relativePath)
             case .getLastUpdate():
-                relativePath = "api/last_update_"
+                relativePath = "api/last-update/"
                 url?.appendPathComponent(relativePath)
             case .getPaper(let absoluteURL):
+                // The API provides the absolute path so no need to touch it!
                 url = URL(string: absoluteURL)
             }
             
