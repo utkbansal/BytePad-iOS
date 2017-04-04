@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 
 enum Router: URLRequestConvertible {
-    static let baseURLString = "http://testapi.silive.in/"
+    static let baseURLString = "http://bp.silive.in/"
     
     case getAll()
     case getVersion()
@@ -35,7 +35,7 @@ enum Router: URLRequestConvertible {
             let relativePath: String
             switch self {
             case .getAll():
-                relativePath = "api/get_list_"
+                relativePath = "api/list"
             case .getVersion():
                 relativePath = "api/get_verison_"
             case .getLastUpdate():

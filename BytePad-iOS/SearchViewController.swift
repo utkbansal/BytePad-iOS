@@ -146,7 +146,7 @@ extension SearchViewController: UITableViewDataSource {
             paper = self.papers[indexPath.row]
         }
         cell.nameLabel.text = paper.name
-        cell.examTypeLabel.text = paper.examTypeID?.stringValue ?? "Not available"
+        cell.examTypeLabel.text = paper.exam ?? "Not available"
         return cell
     }
     

@@ -31,15 +31,16 @@ class APIManager {
             if response.result.isSuccess == true {
                 let delegate = UIApplication.shared.delegate as! AppDelegate
                 let context = delegate.persistentContainer.viewContext
+                
                 if let data = response.result.value {
                     let json = JSON(data)
                     for item in json {
                         let paper = Paper(context: context)
                         
-                        paper.fileURL =  item.1.dictionaryValue["file_url"]?.stringValue
-                        paper.semester = item.1.dictionaryValue["semester"]?.numberValue
-                        paper.examTypeID = item.1.dictionaryValue["exam_type_id"]?.numberValue
-                        paper.name = paper.fileURL?.components(separatedBy: "/").last?.components(separatedBy: ".").dropLast().joined()
+                        paper.fileURL =  item.1.dictionaryValue["file"]?.stringValue
+                        paper.session = item.1.dictionaryValue["session"]?.stringValue
+                        paper.exam = item.1.dictionaryValue["exam"]?.stringValue
+                        paper.name = paper.fileURL?.components(separatedBy: "/").last?.components(separatedBy: ".").dropLast().joined().replacingOccurrences(of: "_", with: " ")
                         delegate.saveContext()
                     }
                 }
