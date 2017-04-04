@@ -29,7 +29,8 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
         
         self.filteredPapers = papers.filter {
             paper in
-            return paper.name!.lowercased().contains(searchText.lowercased())
+            let categoryMatch = (scope == "All") || (paper.exam == scope)
+            return categoryMatch && paper.name!.lowercased().contains(searchText.lowercased())
         }
         
         self.searchTableView.reloadData()
@@ -96,7 +97,7 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
         self.searchController.dimsBackgroundDuringPresentation = false
         self.definesPresentationContext = true
         self.searchTableView.tableHeaderView = searchController.searchBar
-        searchController.searchBar.scopeButtonTitles = ["All", "ST1", "ST2", "PUT", "UT"]
+        searchController.searchBar.scopeButtonTitles = ["All", "ST 1", "ST 2", "PUT", "UT"]
         searchController.searchBar.delegate = self
         
         
@@ -120,9 +121,7 @@ class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchB
             
         }
     }
-
-        
-    }
+}
     
 
 
